@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Show department page  {% endblock %}
+{% block content %}
+	<h1>Department page</h1>
+			  <a class="ac" href="{% url 'adddept' %}">Add department</a>
+	<table id="student" style="width:80%">
+		{% if data %}
+			<tr>
+				<th>Department Id</th>
+				<th>Department Name</th>
+				<th>Delete</th>
+			</tr>
+		{% endif %}
+			{% for d in data %}
+				<tr align = "center">
+					<td>{{ d.did }}</td>
+					<td>{{ d.dname }}</td>
+					<td> <a href ="{% url 'deletedept' id=d.did %}" onclick="return confirm('Are you sure')">Delete</td>
+				
+				</tr>
+			{% empty %}
+				<tr>
+					<td>No data found</td>
+				</tr>
+			{% endfor %}
+	</table>
+	
+{% endblock %}
